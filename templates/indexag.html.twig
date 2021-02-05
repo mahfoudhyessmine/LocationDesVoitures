@@ -1,0 +1,62 @@
+
+{% block body %}
+ <link rel="stylesheet" href="http://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+ <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="\">Bienvenue administrateur</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto ">
+                
+          <a class="nav-link" href="{{ path('ajouteagence') }}">Ajouter</a>
+     
+        </ul>  
+      <ul class="navbar-nav ml-auto ">
+         <li class="nav-item">
+                {% if is_granted('ROLE_ADMIN') %}
+                    <div class="mb-3">
+                        <a href="{{ path('app_logout') }}">Logout</a>
+                        <a href=> {{app.user.Fullname}} </a>
+                    </div>
+                 {% endif %}        
+      </ul>     
+</div> 
+ </div>
+</nav> 
+</ul>
+    </div>
+  </div>
+</nav>
+{% for message in app.flashes('notice') %}
+<div class="alert alert-success" role="alert">
+{{message}}
+</div>
+{% endfor %}
+<h1> Liste des Agences</h1>
+<table border=1>
+<tr>
+
+
+<td>nom</td> 
+<td>telagence</td> 
+
+<td>adresseville</td> 
+<td>Actions</td> 
+</tr>
+{% for agence in Agences %}
+
+
+<tr>
+
+<td> {{agence.nom}} </td> 
+<td> {{agence.tel}} </td> 
+<td>  {{agence.adress}}  </td>  
+
+  <td> <a href="{{ path('modifieragance',{'tel': agence.tel }) }}">Modifier</a><a href="{{ path('suppagence' ,{'tel': agence.tel }) }}">Supprimerr</a> </td>
+</tr> 
+{% endfor%}
+</table>
+{% endblock %}

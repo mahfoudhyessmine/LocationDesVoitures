@@ -1,0 +1,21 @@
+{% block body %}
+       <link rel="stylesheet" href="http://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+
+<h1> le nombre de voiture disponible</h1>
+{% set statique=0 %}
+{%for voiture in voitures%}
+{% if voiture.Disponiibilite==1 %}
+
+{% set statique=(statique)+1/100 %}
+
+{% endif%}
+
+{% endfor%}
+<div class="progress">
+  <div class="progress-bar" role="progressbar" style="width: 25%;" aria-valuenow="25" 
+  aria-valuemin="0" aria-valuemax="100">{{ statique }}</div>
+</div>
+
+
+
+{% endblock %}
